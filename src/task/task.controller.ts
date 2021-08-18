@@ -32,13 +32,22 @@ export class TaskController {
     }
 
     
+// @Post()
+// @UsePipes(ValidationPipe)
+//     createTask(@Body() createTaskDto: createTaskDto,
+//     @GetUser() user: User,):Promise<Task>{
+//         this.logger.verbose(`User "${user.username}" creating a new task. Data: ${JSON.stringify(createTaskDto)} `)
+//     return this.taskService.createTask(createTaskDto, user);
+//      }
 @Post()
 @UsePipes(ValidationPipe)
-    createTask(@Body() createTaskDto: createTaskDto,
-    @GetUser() user: User,):Promise<Task>{
-        this.logger.verbose(`User "${user.username}" creating a new task. Data: ${JSON.stringify(createTaskDto)} `)
-    return this.taskService.createTask(createTaskDto, user);
-     }
+createTask(@Body() createTaskDto: createTaskDto,
+@GetUser() user:User,
+): Promise<Task>{
+
+    return this.taskService.createTask(createTaskDto , user);
+}
+
 @Delete('/:id')
      deleteTask(@Param('id',ParseIntPipe,) id:number,  @GetUser() user: User): Promise<void>{
         return this.taskService.deleteTask(id, user)

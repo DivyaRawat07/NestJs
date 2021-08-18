@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException, Param } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { GetUser } from 'src/auth/get-user.decorator';
+//import { GetUser } from 'src/auth/get-user.decorator';
 
 import { User } from 'src/auth/user.entity';
 import { createTaskDto } from './dto/create-task.dto';
@@ -29,7 +29,7 @@ export class TaskService {
     async getTaskById(id: number,
          user: User
         ): Promise<Task>{
-        const found = await this.taskRepository.findOne({where:{id, userId: user.id}})
+        const found = await this.taskRepository.findOne({id})
 
         if(!found){
             throw new NotFoundException(`Task with ID "${id}" not found`)
