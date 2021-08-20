@@ -13,6 +13,9 @@ import { TasksRepository } from './task.repository';
 
 @Injectable()
 export class TaskService {
+    static createTask(createTaskDto: { title: string; description: string; }, mockUser: { id: number; username: string; }) {
+        throw new Error("Method not implemented.");
+    }
     constructor(
         @InjectRepository(TasksRepository)
         private taskRepository: TasksRepository,

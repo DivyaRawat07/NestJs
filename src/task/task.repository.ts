@@ -9,6 +9,9 @@ import { createTaskDto } from "./dto/create-task.dto";
 
 @EntityRepository(Task)
 export class TasksRepository extends Repository<Task> {
+    static createTask(createTask: any) {
+        throw new Error("Method not implemented.");
+    }
     private logger = new Logger('TasksRepository');
 
     async getTasks(filterDto: GetTaskFilterDto, user: User): Promise<Task[]> {
