@@ -1,6 +1,7 @@
 import { Logger, ParseIntPipe, UseGuards } from '@nestjs/common';
 import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UsePipes, ValidationPipe } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { GetUser } from 'src/auth/get-user.decorator';
 import { User } from 'src/auth/user.entity';
 import { createTaskDto } from './dto/create-task.dto';
@@ -12,9 +13,10 @@ import { Task } from './task.entity';
 
 
 import { TaskService } from './task.service';
-
+@ApiTags('tasks')
 @Controller('task')
 @UseGuards(AuthGuard())
+@ApiBearerAuth()
 export class TaskController {
     private logger = new Logger('TaskController')
     constructor( private taskService: TaskService){}
